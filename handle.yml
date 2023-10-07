@@ -1,0 +1,10 @@
+---
+- hosts: dbsystems
+  become: yes
+  tasks:
+    - name: change config
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot.*$'
+        replace: '^DocumentRoot "/opt/www"'
+        backup: yes

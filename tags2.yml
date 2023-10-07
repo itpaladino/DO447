@@ -1,0 +1,22 @@
+---
+- name: Instalar y configurar servidor Apache
+  hosts: dbsystems
+  become: true
+  tags: 
+    - apache
+  tasks:
+    - name: Instalar servidor Apache
+      yum:
+        name: httpd
+        state: present
+      tags:
+        - apache-install
+
+    - name: Iniciar servicio Apache
+      systemd:
+        name: httpd
+        state: started
+        enabled: true
+      tags:
+        - apache-start
+

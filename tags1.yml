@@ -1,0 +1,21 @@
+---
+- name: Instalar y configurar servidor de base de datos SQL
+  hosts: dbsystems
+  become: true
+  tags: 
+    - sql
+  tasks:
+    - name: Instalar servidor de base de datos SQL
+      yum:
+        name: sql-server
+        state: present
+      tags:
+        - sql-install
+
+    - name: Iniciar servicio de base de datos SQL
+      systemd:
+        name: sql-server.service
+        state: started
+        enabled: true
+      tags:
+        - sql-start

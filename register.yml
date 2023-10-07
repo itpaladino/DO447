@@ -1,0 +1,13 @@
+---
+- hosts: dbsystems 
+  tasks: 
+    - name: create file
+      file: 
+        path: /tmp/register
+        state: touch
+      register: output
+    - debug: msg="Register output is {{ output }}"
+    - name: edit file
+      lineinfile:
+        path: /tmp/register
+        line: "{{ output.uid }}"

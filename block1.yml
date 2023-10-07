@@ -1,0 +1,12 @@
+---
+- hosts: dbsystems
+  tasks:
+    - name: get file
+      block:
+        - get_url:
+            url: "httpd://node1/index.html"
+            dest: "/tmp/index_file"
+      rescue:
+        - debug: msg="The file doesn`t exists!"
+      always:
+        - debug: msg="Play done!"

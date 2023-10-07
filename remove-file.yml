@@ -1,0 +1,8 @@
+---
+- hosts: dbsystems
+  become: yes
+  tasks:
+    - name: Remove file
+      file:
+        path: /var/www/html/index.html 
+        state: absent

@@ -1,0 +1,11 @@
+---
+- hosts: dbsystems
+  become: yes
+  tasks: 
+    - name: create users
+      user:
+        name: "{{item}}"
+      with_items:
+        - Pedro
+        - Daevid
+        - Nilton  
